@@ -4,6 +4,9 @@ const recognition = new SpeechRecognition();
 recognition.interimResults = true;
 recognition.lang = 'en-US';
 
+const english = document.querySelector('.english'); 
+const swedish = document.querySelector('.swedish'); 
+
 let p = document.createElement('p');
 const words = document.querySelector('.words');
 words.appendChild(p);
@@ -40,3 +43,14 @@ const handleStop = () => {
 }
 
 btnEnd.addEventListener('click', handleStop)
+
+function changeLanguageEn(){
+    recognition.lang = 'en-US';
+}
+
+function changeLanguageSv(){
+    recognition.lang = 'sv-SE';
+}
+
+english.addEventListener('click', changeLanguageEn); 
+swedish.addEventListener('click', changeLanguageSv); 
