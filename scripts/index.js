@@ -17,13 +17,18 @@ recognition.addEventListener('result', e => {
         .map(result => result.transcript)
         .join('');
 
-    const poopScript = transcript.replace(/poop|poo|shit|dump/gi, '💩');
-    p.textContent = poopScript;
+    p.textContent = transcript
+    .replace(/poop|poo|shit|dump/gi, '💩')
+    .replace(/heart|love|nice/gi, '❤️')
+    .replace(/frog|frogs|toad|toads/gi, '🐸'); 
+
+   
 
     if (e.results[0].isFinal) {
         p = document.createElement('p');
         words.appendChild(p);
     }
+   console.log(recognition); 
 });
 
 recognition.addEventListener('end', recognition.start);
