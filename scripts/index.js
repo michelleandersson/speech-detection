@@ -5,14 +5,12 @@ recognition.interimResults = true;
 recognition.lang = 'en-US';
 
 const english = document.querySelector('.english'); 
-const swedish = document.querySelector('.swedish'); 
+const swedish = document.querySelector('.swedish');  
 
 let p = document.createElement('p');
 const words = document.querySelector('.words');
 words.appendChild(p);
-
-const btnStart = document.querySelector('.start')
-const btnEnd = document.querySelector('.end')
+ 
 
 recognition.addEventListener('result', e => {
     const transcript = Array.from(e.results)
@@ -31,18 +29,30 @@ recognition.addEventListener('result', e => {
         p = document.createElement('p');
         words.appendChild(p);
     }
-   console.log(recognition); 
 });
 
-recognition.addEventListener('end', recognition.start);
-recognition.start();
+const recordBtn = document.querySelector('#recordBtn'); 
+recordBtn.addEventListener('click', function() {
+    function startRecording(){
+        recognition.start();
+        recognition.addEventListener('end', recognition.start); 
+        recordBtn.addEventListener('click', stopRecording); 
+        console.log('recording started'); 
+    }
+    function stopRecording(){
+        recognition.removeEventListener('end', recognition.start); 
+        recognition.stop(); 
+        console.log('recording stopped'); 
+    }
+    if(recordBtn.value == 'stop') {
+        startRecording(); 
+        recordBtn.value = 'start'
+    } else {
+        stopRecording(); 
+        recordBtn.value = 'stop'
+    }
+}); 
 
-const handleStop = () => {
-    recognition.stop();
-    console.log('Speech recognition has stopped.');
-}
-
-btnEnd.addEventListener('click', handleStop)
 
 function changeLanguageEn(){
     recognition.lang = 'en-US';
