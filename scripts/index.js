@@ -2,10 +2,10 @@ window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogn
 
 const recognition = new SpeechRecognition();
 recognition.interimResults = true;
+//continuous keeps recording but writes the wrong things
+//recognition.continuous = true; 
 recognition.lang = 'en-US';
-
-const english = document.querySelector('.english'); 
-const swedish = document.querySelector('.swedish');  
+ 
 
 let p = document.createElement('p');
 const words = document.querySelector('.words');
@@ -31,36 +31,44 @@ recognition.addEventListener('result', e => {
     }
 });
 
-const recordBtn = document.querySelector('#recordBtn'); 
-recordBtn.addEventListener('click', function() {
+//this line of code makes the buttons not work
+//recognition.addEventListener('end', recognition.start); 
+
+const recordBtnEn = document.querySelector('#recordBtnEn'); 
+recordBtnEn.addEventListener('click', function() {
+    recognition.lang = 'en-US';
     function startRecording(){
         recognition.start();
-        recognition.addEventListener('end', recognition.start); 
-        recordBtn.addEventListener('click', stopRecording); 
-        console.log('recording started'); 
+        console.log('recording started EN'); 
     }
-    function stopRecording(){
-        recognition.removeEventListener('end', recognition.start); 
+    function stopRecording(){ 
         recognition.stop(); 
-        console.log('recording stopped'); 
+        console.log('recording stopped EN'); 
     }
-    if(recordBtn.value == 'stop') {
-        startRecording(); 
-        recordBtn.value = 'start'
-    } else {
+    if(recordBtnEn.value == 'start') {
         stopRecording(); 
-        recordBtn.value = 'stop'
+        recordBtnEn.value = 'stop'
+    } else {
+        startRecording(); 
+        recordBtnEn.value = 'start'
     }
 }); 
-
-
-function changeLanguageEn(){
-    recognition.lang = 'en-US';
-}
-
-function changeLanguageSv(){
+const recordBtnSe = document.querySelector('#recordBtnSe'); 
+recordBtnSe.addEventListener('click', function() {
     recognition.lang = 'sv-SE';
-}
-
-english.addEventListener('click', changeLanguageEn); 
-swedish.addEventListener('click', changeLanguageSv); 
+    function startRecording(){
+        recognition.start();
+        console.log('recording started SE'); 
+    }
+    function stopRecording(){ 
+        recognition.stop(); 
+        console.log('recording stopped SE'); 
+    }
+    if(recordBtnSe.value == 'start') {
+        stopRecording(); 
+        recordBtnSe.value = 'stop'
+    } else {
+        startRecording(); 
+        recordBtnSe.value = 'start'
+    }
+}); 

@@ -1,0 +1,42 @@
+body {
+    background-color: rgb(29, 47, 99);
+}
+
+.container {
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+h1 {
+    text-align: center;
+    color: rgb(187, 186, 186);
+}
+
+button {
+    max-width: 150px;
+    height: 80px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px rgb(24, 24, 24);
+    background-color: rgb(187, 186, 186);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+button:hover {
+    box-shadow: none;
+}
+
+button:focus {
+    background-color: rgb(118, 190, 85);
+}
+
+.words {
+    background-color: honeydew;
+    font-family: cursive;
+    border-radius: 5px;
+}
