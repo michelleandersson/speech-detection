@@ -32,19 +32,21 @@ recognition.addEventListener('result', e => {
 });
 
 //this line of code makes the buttons not work
-//recognition.addEventListener('end', recognition.start); 
-
+recognition.addEventListener('end', recognition.start); 
 const recordBtnEn = document.querySelector('#recordBtnEn'); 
-recordBtnEn.addEventListener('click', function() {
+
+function startRecording(){
     recognition.lang = 'en-US';
-    function startRecording(){
-        recognition.start();
-        console.log('recording started EN'); 
-    }
-    function stopRecording(){ 
-        recognition.stop(); 
-        console.log('recording stopped EN'); 
-    }
+    recognition.start();
+    console.log('recording started EN'); 
+}
+
+function stopRecording(){ 
+    recognition.stop(); 
+    console.log('recording stopped EN'); 
+}
+
+function handleEnglish() {
     if(recordBtnEn.value == 'start') {
         stopRecording(); 
         recordBtnEn.value = 'stop'
@@ -52,7 +54,11 @@ recordBtnEn.addEventListener('click', function() {
         startRecording(); 
         recordBtnEn.value = 'start'
     }
-}); 
+}
+
+recordBtnEn.addEventListener('click', handleEnglish); 
+
+
 const recordBtnSe = document.querySelector('#recordBtnSe'); 
 recordBtnSe.addEventListener('click', function() {
     recognition.lang = 'sv-SE';
