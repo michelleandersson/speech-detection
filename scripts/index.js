@@ -4,7 +4,6 @@ const recognition = new SpeechRecognition();
 recognition.interimResults = true;
 //continuous keeps recording but writes the wrong things
 //recognition.continuous = true; 
-recognition.lang = 'en-US';
  
 
 let p = document.createElement('p');
@@ -32,7 +31,7 @@ recognition.addEventListener('result', e => {
 });
 
 //this line of code makes the buttons not work
-recognition.addEventListener('end', recognition.start); 
+//recognition.addEventListener('end', recognition.start); 
 const recordBtnEn = document.querySelector('#recordBtnEn'); 
 
 function startRecording(){
